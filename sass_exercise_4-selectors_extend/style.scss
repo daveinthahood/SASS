@@ -1,55 +1,55 @@
 
-    @use "function.scss" as f;
-    @import url(variabili.scss);
+@use "function.scss" as f;
+@import url(variabili.scss);
 
-    @mixin article-card($color: red, $border-color: blue, $font-size: 1rem) {
-        color: $color;
-        border-color: $border-color;
-        font-size: f.value-convert($font-size)
+@mixin article-card($color: red, $border-color: blue, $font-size: 1rem) {
+    color: $color;
+    border-color: $border-color;
+    font-size: f.value-convert($font-size)
+  }
+  
+  div {
+    @include article-card();
+    border: f.value-convert(1);
+  
+   & > h1 {
+      @include article-card(green, $font-size: 24px);
+      text-align: center;
+      text-decoration: underline blue 0.5px;
+    }
+
+    & > h2 {
+        @extend h1;
+        padding: 1rem;
+        border: 1px solid $color-primary;
+
+    }
+    section {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      margin: 10px;
+      article {
+        @include article-card($color-tertiary);
+        border:  f.value-convert(1);
+        padding: 15px;
       }
+      article .blue {
+        @include article-card(blue, green);
+      }
+      article .red {
+        @include article-card(red, green);
+      }
+    }
+  
+    .lastbox {
+      article {
+        @include article-card($border-color: blue);
       
-      div {
-        @include article-card();
-        border: f.value-convert(1);
-      
-       & > h1 {
+        p {
           @include article-card(green, $font-size: 24px);
-          text-align: center;
-          text-decoration: underline blue 0.5px;
-        }
-
-        & > h2 {
-            @extend h1;
-            padding: 1rem;
-            border: 1px solid $color-primary;
-
-        }
-        section {
-          display: flex;
-          justify-content: center;
-          text-align: center;
-          margin: 10px;
-          article {
-            @include article-card($color-tertiary);
-            border:  f.value-convert(1);
-            padding: 15px;
-          }
-          article .blue {
-            @include article-card(blue, green);
-          }
-          article .red {
-            @include article-card(red, green);
-          }
-        }
-      
-        .lastbox {
-          article {
-            @include article-card($border-color: blue);
-          
-            p {
-              @include article-card(green, $font-size: 24px);
-            }
-          }
         }
       }
+    }
+  }
 
