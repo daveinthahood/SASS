@@ -40,7 +40,7 @@
       article .red {
         @include article-card(red, green);
       }
-    }
+    };
   
     .lastbox {
       article {
@@ -51,5 +51,22 @@
         }
       }
     }
-  }
+
+
+    @for $i from 1 through 19 {
+      $bg-color: darken($bg-color, 5%);
+      $black: lighten($black, 5%);
+      @if ($i == 10) {
+        section > div:nth-child(10) {
+          background-color: blue;
+          color: red;
+        }
+      } @else {
+        section > div:nth-child(#{$i}) {
+          background-color: $bg-color;
+          color: $black;
+        }
+      }
+    }
+  };
 
